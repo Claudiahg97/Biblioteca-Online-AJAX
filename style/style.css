@@ -1,0 +1,663 @@
+/* Reset y estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background-color: #f5f1e8;
+    background-image: 
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(139, 90, 43, 0.03) 2px, rgba(139, 90, 43, 0.03) 4px),
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139, 90, 43, 0.03) 2px, rgba(139, 90, 43, 0.03) 4px);
+    min-height: 100vh;
+    padding: 40px 20px;
+    color: #2c1810;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #fefdfb;
+    padding: 50px;
+    border-radius: 2px;
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        0 8px 16px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(139, 90, 43, 0.1);
+    position: relative;
+    background-image: 
+        radial-gradient(circle at 20% 50%, transparent 98%, rgba(139, 90, 43, 0.03) 100%),
+        radial-gradient(circle at 80% 80%, transparent 98%, rgba(139, 90, 43, 0.03) 100%);
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid rgba(139, 90, 43, 0.2);
+    pointer-events: none;
+}
+
+.container::after {
+    content: '❖';
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2em;
+    color: #d4a574;
+    opacity: 0.3;
+}
+
+/* Títulos */
+h1 {
+    color: #8b5a2b;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 3em;
+    font-weight: normal;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+h1::after {
+    content: '❦';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.5em;
+    color: #d4a574;
+}
+
+h2 {
+    color: #6b4423;
+    margin: 35px 0 20px;
+    font-size: 1.8em;
+    font-weight: normal;
+    border-bottom: 2px solid #d4a574;
+    padding-bottom: 10px;
+}
+
+h3 {
+    color: #8b5a2b;
+    margin-bottom: 25px;
+    font-size: 1.6em;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+/* Mensajes de éxito y error */
+.mensaje-exito, .mensaje-error {
+    padding: 18px 25px;
+    border-radius: 0;
+    margin: 25px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.95em;
+    border-left: 4px solid;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+}
+
+.mensaje-exito {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border-color: #4caf50;
+}
+
+.mensaje-error {
+    background-color: #ffebee;
+    color: #c62828;
+    border-color: #f44336;
+}
+
+/* Formularios */
+form {
+    background: #faf8f5;
+    padding: 40px;
+    border-radius: 0;
+    margin: 30px 0;
+    border: 1px solid #d4a574;
+    box-shadow: 0 4px 12px rgba(139, 90, 43, 0.08);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #6b4423;
+    font-size: 0.95em;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="url"],
+input[type="file"],
+textarea,
+select {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid #d4a574;
+    border-radius: 0;
+    font-size: 1em;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    transition: all 0.3s ease;
+    background: #fefdfb;
+    color: #2c1810;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+input[type="url"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #8b5a2b;
+    background: white;
+    box-shadow: inset 0 2px 4px rgba(139, 90, 43, 0.1);
+}
+
+textarea {
+    min-height: 140px;
+    resize: vertical;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    line-height: 1.6;
+}
+
+select[multiple] {
+    min-height: 180px;
+}
+
+.info {
+    font-size: 0.85em;
+    color: #8b7355;
+    margin-top: 8px;
+    font-style: italic;
+    font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+/* Formularios inline (sin estilos de formulario) */
+.form-inline {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+.form-inline button {
+    margin: 0;
+}
+
+/* Botones */
+button,
+input[type="submit"] {
+    background-color: #8b5a2b;
+    color: #fefdfb;
+    padding: 14px 35px;
+    border: 2px solid #6b4423;
+    border-radius: 0;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 8px 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0 4px 8px rgba(139, 90, 43, 0.2);
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background-color: #6b4423;
+    border-color: #4a2f18;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(139, 90, 43, 0.3);
+}
+
+button:active,
+input[type="submit"]:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(139, 90, 43, 0.2);
+}
+
+.btn-cancelar {
+    background-color: #c9302c;
+    border-color: #ac2925;
+}
+
+.btn-cancelar:hover {
+    background-color: #ac2925;
+    border-color: #8b211e;
+}
+
+/* Enlaces */
+a {
+    color: #8b5a2b;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+    padding-bottom: 2px;
+}
+
+a:hover {
+    color: #6b4423;
+    border-bottom-color: #d4a574;
+}
+
+/* Enlace de compra destacado */
+.enlace-compra {
+    display: inline-block;
+    background-color: #4a7c59;
+    color: #fefdfb;
+    padding: 14px 35px;
+    border: 2px solid #3d6649;
+    font-size: 0.95em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0 4px 8px rgba(74, 124, 89, 0.2);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.enlace-compra:hover {
+    background-color: #3d6649;
+    border-color: #2d4a35;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(74, 124, 89, 0.3);
+    color: #fefdfb;
+}
+
+/* Contenedor de libros (grid) */
+.libros-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 35px;
+    margin: 40px 0;
+}
+
+.libro-card {
+    background: #fefdfb;
+    border: 1px solid #d4a574;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(139, 90, 43, 0.1);
+    transition: all 0.4s ease;
+    text-align: center;
+    position: relative;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.libro-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 
+        0 12px 24px rgba(139, 90, 43, 0.15),
+        0 0 0 1px #8b5a2b;
+}
+
+.libro-card img {
+    width: 100%;
+    max-width: 160px;
+    height: 220px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid #d4a574;
+    box-shadow: 
+        4px 4px 0 rgba(139, 90, 43, 0.1),
+        0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.libro-card:hover img {
+    transform: scale(1.03);
+    border-color: #8b5a2b;
+}
+
+/* Enlace del libro con título hover */
+.libro-link {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    border: none;
+}
+
+.libro-link:hover {
+    border: none;
+}
+
+/* Título que aparece al hacer hover */
+.libro-titulo-hover {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    background: rgba(139, 90, 43, 0.95);
+    color: #fefdfb;
+    padding: 12px 10px;
+    font-size: 0.9em;
+    font-weight: 600;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    border-top: 2px solid #d4a574;
+    border-bottom: 2px solid #d4a574;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.3;
+}
+
+.libro-link:hover .libro-titulo-hover {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.libro-card h3 {
+    font-size: 1.15em;
+    margin: 15px 0 10px;
+    color: #2c1810;
+    font-weight: normal;
+    line-height: 1.4;
+}
+
+.libro-card p {
+    color: #6b4423;
+    font-size: 0.9em;
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+.libro-card strong {
+    color: #8b5a2b;
+    font-weight: 600;
+}
+
+/* Estilos específicos para página de detalle del libro */
+.libro-detalle-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.libro-card-detalle {
+    background: #fefdfb;
+    border: 1px solid #d4a574;
+    padding: 40px;
+    box-shadow: 0 4px 12px rgba(139, 90, 43, 0.1);
+    text-align: center;
+    margin: 30px 0;
+}
+
+.libro-card-detalle img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    object-fit: cover;
+    margin: 0 auto 25px;
+    border: 3px solid #d4a574;
+    box-shadow: 
+        4px 4px 0 rgba(139, 90, 43, 0.1),
+        0 4px 8px rgba(0, 0, 0, 0.15);
+    display: block;
+}
+
+.libro-card-detalle h3 {
+    font-size: 1.8em;
+    margin: 20px 0;
+    color: #2c1810;
+    font-weight: normal;
+    line-height: 1.4;
+}
+
+.libro-card-detalle p {
+    color: #6b4423;
+    font-size: 1em;
+    margin: 15px 0;
+    line-height: 1.8;
+    text-align: left;
+}
+
+.libro-card-detalle strong {
+    color: #8b5a2b;
+    font-weight: 600;
+}
+
+/* Descripción completa */
+.descripcion-completa {
+    background: #faf8f5;
+    padding: 25px;
+    margin: 25px 0;
+    border-left: 4px solid #d4a574;
+    text-align: left;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+/* Contenedor de botones de acción */
+.botones-accion {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+/* Barra de navegación superior */
+.nav-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.nav-superior .form-inline {
+    margin-right: auto;
+}
+
+/* Imagen actual en formulario de edición */
+.imagen-actual {
+    max-width: 220px;
+    height: auto;
+    border: 3px solid #d4a574;
+    margin: 20px 0;
+    box-shadow: 4px 4px 0 rgba(139, 90, 43, 0.1);
+    display: block;
+}
+
+/* Mensaje cuando no hay libros */
+.no-libros {
+    text-align: center;
+    padding: 80px 30px;
+    background: #faf8f5;
+    border: 2px dashed #d4a574;
+    margin: 40px 0;
+}
+
+.no-libros h3 {
+    color: #8b7355;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.no-libros p {
+    color: #a89682;
+    font-size: 1.05em;
+    font-style: italic;
+}
+
+/* Separador */
+hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #d4a574, transparent);
+    margin: 40px 0;
+}
+
+/* Navegación/Enlaces de volver */
+.nav-links {
+    margin: 25px 0;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Estilos para páginas de inicio de sesión y registro */
+.auth-container {
+    max-width: 550px;
+    margin: 60px auto;
+}
+
+.auth-container form {
+    margin-bottom: 35px;
+}
+
+/* Bienvenida de usuario */
+.user-welcome {
+    background-color: #8b5a2b;
+    color: #fefdfb;
+    padding: 18px 30px;
+    margin-bottom: 25px;
+    display: inline-block;
+    border: 2px solid #6b4423;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 8px rgba(139, 90, 43, 0.2);
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Placeholder personalizado */
+::placeholder {
+    color: #bda990;
+    opacity: 1;
+    font-style: italic;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f5f1e8;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #d4a574;
+    border-radius: 0;
+    border: 2px solid #f5f1e8;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #8b5a2b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 20px 10px;
+    }
+    
+    .container {
+        padding: 30px 20px;
+    }
+    
+    .container::before {
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+    }
+    
+    h1 {
+        font-size: 2em;
+        letter-spacing: 2px;
+    }
+    
+    .libros-container {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 20px;
+    }
+    
+    form {
+        padding: 25px 20px;
+    }
+    
+    button,
+    input[type="submit"] {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    /* Responsive para detalle de libro */
+    .libro-card-detalle {
+        padding: 25px 20px;
+    }
+    
+    .botones-accion {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .botones-accion button,
+    .botones-accion .enlace-compra {
+        width: 100%;
+    }
+    
+    .nav-superior {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.6em;
+        letter-spacing: 1px;
+    }
+    
+    .libros-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .container {
+        padding: 25px 15px;
+    }
+}

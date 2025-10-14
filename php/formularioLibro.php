@@ -2,7 +2,7 @@
 session_start(); 
 if (isset($_SESSION['errorLibro'])) {
     echo "<div style='color: red; padding: 10px; border: 1px solid red; margin: 10px;'>" . 
-         htmlspecialchars($_SESSION['error']) . "</div>";
+        htmlspecialchars($_SESSION['error']) . "</div>";
     unset($_SESSION['error']);
 }
 $conn = require( "conection.php");

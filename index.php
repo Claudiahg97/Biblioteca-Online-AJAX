@@ -48,7 +48,7 @@
                 echo "<h3>" . $_SESSION['error'] . "<h3>";
             }        
         ?>
-     </div>
+    </div>
 </body>
 </html>
 <?php session_destroy(); ?>

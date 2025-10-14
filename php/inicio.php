@@ -16,7 +16,6 @@
         echo "Error: " . $e->getMessage();
     }
     if ($usuario) { 
-                 
         if (password_verify($_POST['contra'], $usuario['passw'])) {
             $_SESSION['error'] = "Inicio de sesión exitoso";
             $_SESSION['nombre'] = $usuario['nombre'];

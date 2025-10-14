@@ -7,6 +7,7 @@ CREATE TABLE usuarios (
     nombre VARCHAR(100) NOT NULL,    
     email VARCHAR(100) NOT NULL UNIQUE,
     passw VARCHAR(255) NOT NULL,
+    img VARCHAR(255),
     PRIMARY KEY (id)
 );
 
@@ -36,4 +37,13 @@ CREATE TABLE libro_genero (
     PRIMARY KEY(id_libro, id_genero),
     FOREIGN KEY (id_libro) REFERENCES libros(id) ON DELETE CASCADE,
     FOREIGN KEY (id_genero) REFERENCES generos(id) ON DELETE CASCADE
+);
+
+CREATE TABLE clacificacion (
+    id_libro INT NOT NULL,
+    id_usuario INT NOT NULL,
+    clasificación INT,
+    PRIMARY KEY(id_libro, id_usuario),
+    FOREIGN KEY (id_libro) REFERENCES libros(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE
 );

@@ -17,6 +17,12 @@ $conn = require("conection.php");
 $sql = "SELECT * FROM libros ORDER BY titulo";
 $stmt = $conn->query($sql);
 $libros = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+
+$stmt = $conn->prepare("SELECT * FROM usuarios WHERE email = :email");
+$stmt->bindParam(':email', $email);
+$stmt->execute();
+$usuario = $stmt->fetch(PDO::FETCH_ASSOC); 
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -43,6 +49,13 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
         xmlhttp.send();
         }
     </script>
+    <div class="container">
+        <img src="<?php echo htmlspecialchars($usuario['img']); ?>" 
+        alt="Portada de <?php echo htmlspecialchars($usuario['nombre']); ?>" 
+        title="<?php echo htmlspecialchars($usuario['nombre']); ?>"
+        width="16" 
+        height="16">
+    </div>
 </head>
 <body>
     <div class="container">

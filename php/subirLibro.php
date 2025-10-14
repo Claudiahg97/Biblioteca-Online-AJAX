@@ -95,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             
         }
-         $_SESSION['exito'] = "Libro registrado exitosamente";
+        $_SESSION['exito'] = "Libro registrado exitosamente";
         header("Location: http://localhost/Biblioteca-Online/php/biblioteca.php");
         exit;
     } catch(PDOException $e) {

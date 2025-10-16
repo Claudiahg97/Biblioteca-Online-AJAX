@@ -661,3 +661,230 @@ hr {
         padding: 25px 15px;
     }
 }
+
+/* ========================================
+   BARRA SUPERIOR DE USUARIO
+   ======================================== */
+
+/* Ajustar el body para que tenga espacio para la barra fija */
+body {
+    padding-top: 90px; /* Aumentado para dar espacio a la barra */
+}
+
+/* Barra superior fija */
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #8b5a2b 0%, #6b4423 100%);
+    padding: 15px 40px;
+    box-shadow: 
+        0 2px 8px rgba(139, 90, 43, 0.3),
+        0 4px 16px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    border-bottom: 3px solid #d4a574;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* Perfil de usuario */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    width: fit-content;
+    padding: 8px 20px;
+    border-radius: 0;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.user-profile:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #d4a574;
+}
+
+/* Avatar de usuario */
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fefdfb;
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(212, 165, 116, 0.5);
+    transition: all 0.3s ease;
+}
+
+.user-profile:hover .user-avatar {
+    border-color: #d4a574;
+    transform: scale(1.05);
+}
+
+/* Nombre de usuario */
+.user-name {
+    color: #fefdfb;
+    font-weight: 600;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* Flecha indicadora del menú */
+.menu-arrow {
+    color: #fefdfb;
+    font-size: 12px;
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+.user-profile:hover .menu-arrow {
+    color: #d4a574;
+}
+
+/* Menú desplegable */
+.user-menu {
+    display: none;
+    position: absolute;
+    top: 85px;
+    left: 40px;
+    background: #fefdfb;
+    border: 2px solid #d4a574;
+    box-shadow: 
+        0 8px 24px rgba(139, 90, 43, 0.25),
+        0 0 0 1px rgba(139, 90, 43, 0.1);
+    min-width: 220px;
+    overflow: hidden;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Items del menú */
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 22px;
+    color: #2c1810;
+    text-decoration: none;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #f5f1e8;
+}
+
+.menu-item:hover {
+    background-color: #faf8f5;
+    color: #8b5a2b;
+    padding-left: 28px;
+}
+
+/* Iconos del menú */
+.menu-icon {
+    font-size: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+}
+
+/* Botón de cerrar sesión */
+.logout-btn {
+    border-top: 2px solid #d4a574;
+    border-bottom: none;
+    color: #c62828;
+    font-weight: 600;
+}
+
+.logout-btn:hover {
+    background-color: #ffebee;
+    color: #8b211e;
+}
+
+/* Responsive para la barra de usuario */
+@media (max-width: 768px) {
+    body {
+        padding-top: 80px;
+    }
+    
+    .top-bar {
+        padding: 12px 20px;
+    }
+    
+    .user-profile {
+        padding: 6px 12px;
+        gap: 10px;
+    }
+    
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .user-name {
+        font-size: 14px;
+    }
+    
+    .user-menu {
+        top: 70px;
+        left: 20px;
+        right: 20px;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding-top: 75px;
+    }
+    
+    .top-bar {
+        padding: 10px 15px;
+    }
+    
+    .user-profile {
+        gap: 8px;
+    }
+    
+    .user-name {
+        font-size: 13px;
+        display: none; /* Ocultar nombre en móviles muy pequeños */
+    }
+    
+    .user-avatar {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .user-menu {
+        top: 65px;
+        left: 15px;
+        right: 15px;
+    }
+    
+    .menu-item {
+        padding: 14px 18px;
+        font-size: 14px;
+    }
+}

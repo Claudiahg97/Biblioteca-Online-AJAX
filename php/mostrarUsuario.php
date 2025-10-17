@@ -9,11 +9,17 @@ if (!isset($_SESSION['id_usuario'])) {
 
 $conn = require("conection.php");
 
+
 // Obtener el usuario actual
 $stmt_usuario = $conn->prepare("SELECT * FROM usuarios WHERE email = :email");
 $stmt_usuario->bindParam(':email', $_SESSION['email']);
 $stmt_usuario->execute();
 $usuario = $stmt_usuario->fetch(PDO::FETCH_ASSOC);
+
+$sql = "SELECT * FROM libros WHERE id_usuario = ?";
+$stmt = $conn->prepare($sql);
+$stmt->execute([$usuario['id']]);
+$libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Verificar si se encontró el usuario
 if (!$usuario) {
@@ -60,6 +66,24 @@ if (!$usuario) {
                     <?php endif; ?>
                 </div>
             </div>
+        </div>
+        <div>
+            <?php if (count($libros) > 0): ?>
+                <div class="libro-detalle-container">
+                    <?php foreach ($libros as $libro): ?>
+                        <div class="libro-card-detalle-usuario">
+                            <?php if (!empty($libro['img'])): 
+                                $imagen = "../" . $libro['img'];?>
+                                <img src="<?php echo htmlspecialchars($imagen); ?>" 
+                                    alt="Portada de <?php echo htmlspecialchars($libro['titulo']); ?>" 
+                                    title="<?php echo htmlspecialchars($libro['titulo']); ?>">
+                                    <p><strong>Titulo:</strong> <?php echo htmlspecialchars($libro['titulo']); ?>
+                                    <p><strong>Nº de visitas:</strong> <?php echo htmlspecialchars($libro['visitas']); ?>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
         </div>
         
         <form action="cierre.php" method="POST" class="form-inline" style="text-align: center; margin-top: 30px;">

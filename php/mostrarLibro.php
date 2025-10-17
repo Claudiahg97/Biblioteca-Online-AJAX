@@ -71,6 +71,10 @@ if (!$libro) {
                             <p><strong>Fecha de publicación:</strong> <?php echo htmlspecialchars($libro['fecha']); ?></p>
                 <?php endif; 
                 endif; ?>
+
+                <?php if (!empty($libro['visitas'])): ?>
+                    <p><strong>Visitas:</strong> <?php echo htmlspecialchars($libro['visitas']); ?></p>
+                <?php endif; ?>
                 
                 <?php if (!empty($libro['descripcion'])): ?>
                     <div class="descripcion-completa">
@@ -78,7 +82,6 @@ if (!$libro) {
                         <?php echo nl2br(htmlspecialchars($libro['descripcion'])); ?>
                     </div>
                 <?php endif; ?>
-                
                 
                 <div class="botones-accion">
                     <?php if (!empty($libro['link'])): ?>

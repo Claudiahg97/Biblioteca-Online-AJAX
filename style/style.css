@@ -671,28 +671,36 @@ body {
     padding-top: 90px; /* Aumentado para dar espacio a la barra */
 }
 
+.books{
+    margin-top: 5%;
+}
+
 /* Barra superior fija */
 .top-bar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(135deg, #8b5a2b 0%, #6b4423 100%);
+    background: #fefdfb;
     padding: 15px 40px;
     box-shadow: 
         0 2px 8px rgba(139, 90, 43, 0.3),
         0 4px 16px rgba(0, 0, 0, 0.15);
     z-index: 1000;
-    border-bottom: 3px solid #d4a574;
+    border-bottom: 1px solid #d4a574;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    height: 120px;
 }
 
 /* Perfil de usuario */
 .user-profile {
+    position: absolute;
+    top: 20px;
+    left:70%;
     display: flex;
-    align-items: center;
+    align-items:center;
     gap: 15px;
     cursor: pointer;
     width: fit-content;
@@ -703,8 +711,11 @@ body {
 }
 
 .user-profile:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #8B5A2B;
     border-color: #d4a574;
+}
+.user-profile:hover .user-name{
+    color: #fefdfb;
 }
 
 /* Avatar de usuario */
@@ -727,7 +738,7 @@ body {
 
 /* Nombre de usuario */
 .user-name {
-    color: #fefdfb;
+    color: #6b4423;
     font-weight: 600;
     font-size: 16px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -751,8 +762,8 @@ body {
 .user-menu {
     display: none;
     position: absolute;
-    top: 85px;
-    left: 40px;
+    top: 110px;
+    left:70%;
     background: #fefdfb;
     border: 2px solid #d4a574;
     box-shadow: 
@@ -820,6 +831,18 @@ body {
 .logout-btn:hover {
     background-color: #ffebee;
     color: #8b211e;
+}
+
+.menu-form{
+    border: none;
+}
+
+.menu-form button{
+    color: #fefdfb;
+    background-color: #7C5027;
+    box-shadow: 
+        0 8px 24px rgba(139, 90, 43, 0.25),
+        0 0 0 1px rgba(139, 90, 43, 0.1);
 }
 
 /* Responsive para la barra de usuario */

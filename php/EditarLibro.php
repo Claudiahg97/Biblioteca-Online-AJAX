@@ -157,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
     
     <br>
-    <a href="index.php">← Volver a la página principal</a>
+    <a href="biblioteca.php">← Volver a la página principal</a>
     </div>
 </body>
 </html>

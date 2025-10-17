@@ -1,11 +1,6 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['id_usuario'])) {
-    header("Location: http://localhost/Biblioteca-Online");
-    exit;
-}
-
 $comprobarPass = false;
 $comprobarEmail = false;
 $q = $_POST['password'];
@@ -14,7 +9,7 @@ $_SESSION['nombre'] = $_POST['name'];
 
 // Validar contraseña
 if ((strlen($q) >= 8)&&(preg_match('/[A-Z]/', $q))&&(preg_match('/[a-z]/', $q))&&(preg_match('/[0-9]/', $q))&&(preg_match('/[!@#$%^&*()_\+\-=\[\]{};:\'",.<>?\/\\|`~]/', $q))) {
-    echo "<script>alert('Prueba'); window.history.back();</script>";
+    
     if ($_POST['password'] === $_POST['compPassword'] && $_POST['password'] != "") {
         $comprobarPass = true;
     } else {
@@ -51,7 +46,7 @@ try {
         $hashNombre = hash('sha256', $nameOriginal . '_' . $_SESSION['nombre']);
         $newFileName = $hashNombre . '.' . $extension; // Nombre único
         $target_file = $target_dir . $newFileName;
-        $target_file_db = "uploads/" . $newFileName; // Ruta para BD
+        $target_file_db = "uploads/users/" . $newFileName; // Ruta para BD
 
         // Verificar que es una imagen
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);

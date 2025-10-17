@@ -14,12 +14,26 @@ if (!isset($_SESSION['id_usuario'])) {
 $conn = require("conection.php");
 
 // Obtener todos los libros de la base de datos
-$sql = "SELECT * FROM libros ORDER BY titulo";
+$sql = "SELECT * FROM libros ORDER BY titulo"; 
 $stmt = $conn->query($sql);
 $libros = $stmt->fetchAll(PDO::FETCH_ASSOC); 
 
-// Obtener foto de perfil del usuario
-$foto_perfil = isset($_SESSION['foto_perfil']) ? $_SESSION['foto_perfil'] : '../uploads/users/default.png';
+// Obtener datos del usuario - USA UNA VARIABLE DIFERENTE
+$stmt_usuario = $conn->prepare("SELECT * FROM usuarios WHERE email = :email");
+$stmt_usuario->bindParam(':email', $_SESSION['email']);
+$stmt_usuario->execute();
+$usuario = $stmt_usuario->fetch(PDO::FETCH_ASSOC);
+
+// Verificar que el usuario existe
+if (!$usuario) {
+    // Manejar el caso donde no se encuentra el usuario
+    header('Location: http://localhost/Biblioteca-Online');
+    exit();
+}
+
+// Ahora puedes usar $usuario de forma segura
+$foto_perfil = "../" . (!empty($usuario['img']) ? $usuario['img'] : 'uploads/users/default.png');
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -42,7 +56,7 @@ $foto_perfil = isset($_SESSION['foto_perfil']) ? $_SESSION['foto_perfil'] : '../
                     document.getElementById("livesearch").innerHTML = this.responseText;
                 }
             }
-            xmlhttp.open("GET", "livesearch.php?q=" + str, true);
+            xmlhttp.open("GET", "busqueda.php?q=" + str, true);
             xmlhttp.send();
         }
 
@@ -72,27 +86,26 @@ $foto_perfil = isset($_SESSION['foto_perfil']) ? $_SESSION['foto_perfil'] : '../
         </div>
         
         <div id="user-menu" class=" container user-menu" style="display: none;">
-            
-            <form action="cierre.php" method="POST" style="margin: 0;">
-                <a href="editarPerfil.php" class="menu-item">
-                    <span class="menu-icon"></span> Editar Perfil
-                </a>
+            <form action="mostrarUsuario.php" method="POST" style="margin: 0;" class = "menu-form">                
+                <button type="submit" name="editar" class="menu-item ">
+                    <span class="menu-icon"></span>Mostrar Perfil
+                </button>
+            </form>
+            <form action="cierre.php" method="POST" style="margin: 0;" class = "menu-form">                
                 <button type="submit" name="cerrar" class="menu-item ">
-                    <span class="menu-icon"></span> Cerrar Sesión
+                    <span class="menu-icon"></span>Cerrar Sesión
                 </button>
             </form>
         </div>
     </div>
 
-    <div class="container">
+    <div class="container books">
         <h1>Biblioteca Online</h1>
-        
         <?php if(isset($_SESSION['nombre'])): ?>
             <form action="formularioLibro.php" method="GET" class="form-inline">
                 <button type="submit">Registrar un nuevo libro</button>
             </form>
         <?php endif; ?>
-        
         <hr>
         
         <h2>Catálogo de Libros</h2>

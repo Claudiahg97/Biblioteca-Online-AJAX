@@ -2,6 +2,7 @@
     session_start();
 
     $email = $_POST['emailI'];
+    $_SESSION['email'] =$email;
     try {
         $conn = require( "conection.php");
         

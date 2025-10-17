@@ -38,6 +38,18 @@ if (!$libro) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca - <?php echo htmlspecialchars($libro['titulo']); ?></title>
     <link rel="stylesheet" href="../style/style.css">
+    <script>
+function getVote(int) {
+    var xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function() {
+        if (this.readyState==4 && this.status==200) {
+            document.getElementById("poll").innerHTML=this.responseText;
+        }
+    }
+    xmlhttp.open("GET","votos.php?vote="+int,true);
+    xmlhttp.send();
+}
+</script>
 </head>
 <body> 
     <div class="container">
@@ -72,9 +84,18 @@ if (!$libro) {
                 <?php endif; 
                 endif; ?>
 
-                <?php if (!empty($libro['visitas'])): ?>
-                    <p><strong>Visitas:</strong> <?php echo htmlspecialchars($libro['visitas']); ?></p>
-                <?php endif; ?>
+                <?php if(isset($_SESSION['id_usuario']) && $libro['id_usuario'] === $_SESSION['id_usuario']):
+                    if (!empty($libro['visitas'])): ?>
+                        <p><strong>Visitas:</strong> <?php echo htmlspecialchars($libro['visitas']); ?></p>
+                    <?php endif; 
+                endif; ?>
+
+                <p><strong>Votación</strong></p> 
+                <form>
+                    Yes: <input type="radio" name="vote" value="0" onclick="getVote(this.value)"><br>
+                    No: <input type="radio" name="vote" value="1" onclick="getVote(this.value)">
+                </form>
+                
                 
                 <?php if (!empty($libro['descripcion'])): ?>
                     <div class="descripcion-completa">

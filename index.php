@@ -42,6 +42,10 @@
         <h3>Inicio de Sesión</h3>
         Email: <input type="text" name="emailI" placeholder= "ej: ejemplo@mail.com" value = "<?php  if(isset($_SESSION['emailI'])) echo $_SESSION['emailI']?>"><br>       
         Contraseña*: <input type="password" name="contra" required > <br>
+        <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                <input type="checkbox" id="recordar" name="recordar" style="width: auto;">
+                <label for="recordar" style="margin: 0; text-transform: none;">Recordarme en este dispositivo</label>
+        </div>
         <input type="submit" name= "abrir" value="Iniciar Sesión" >
         </form>
         <?php        

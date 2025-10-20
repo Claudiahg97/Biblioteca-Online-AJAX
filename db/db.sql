@@ -40,10 +40,10 @@ CREATE TABLE libro_genero (
     FOREIGN KEY (id_genero) REFERENCES generos(id) ON DELETE CASCADE
 );
 
-CREATE TABLE clacificacion (
+CREATE TABLE IF NOT EXISTS clacificacion (
     id_libro INT NOT NULL,
     id_usuario INT NOT NULL,
-    clasificación INT,
+    clasificacion TINYINT NOT NULL CHECK (clasificacion IN (0, 1)),
     PRIMARY KEY(id_libro, id_usuario),
     FOREIGN KEY (id_libro) REFERENCES libros(id) ON DELETE CASCADE,
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE

@@ -33,10 +33,10 @@
         Email: <input type="text" name="email" placeholder= "ej: ejemplo@mail.com" value = "<?php  if(isset($_SESSION['email'])) echo $_SESSION['email']?>"><br>       
         Foto de perfil: <input type="file" name="fileToUpload" id="fileToUpload"><br>
         Contraseña*: <input type="password" name="password" required onkeyup="showHint(this.value)"> <br>
-        Repite la contraseña*: <input type="password" name="compPassword" required> <br>        
+        Repite la contraseña*: <input type="password" name="compPassword" required onkeyup="showHint(this.value)"> <br>        
         <input type="submit" name= "abrir" value="Registrarse" >
         </form>
-        Politicas:<div id="txtHint"></div><br>
+        <small class="info">Politicas:<div id="txtHint"></div><br></smart>
 
         <form action="php/inicio.php" method = "POST">
         <h3>Inicio de Sesión</h3>

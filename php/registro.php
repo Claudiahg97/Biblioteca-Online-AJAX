@@ -93,7 +93,6 @@ try {
         $img = $target_file_db;
         $stmt->execute();
 
-        echo "<script>alert('Registro completado correctamente'); window.history.back();</script>";
         $_SESSION['error'] = "Se ha registrado correctamente";
         $_SESSION['nombre'] = "";
         $_SESSION['email'] = "";
@@ -109,4 +108,4 @@ try {
 }
 
 $conn = null;
-header('Location: http://localhost/Biblioteca-Online');
+header('Location: http://localhost/Biblioteca-Online/php/login.php');

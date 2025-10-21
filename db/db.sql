@@ -40,11 +40,22 @@ CREATE TABLE libro_genero (
     FOREIGN KEY (id_genero) REFERENCES generos(id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS clacificacion (
+CREATE TABLE IF NOT EXISTS clasificacion (
     id_libro INT NOT NULL,
     id_usuario INT NOT NULL,
     clasificacion TINYINT NOT NULL CHECK (clasificacion IN (0, 1)),
     PRIMARY KEY(id_libro, id_usuario),
     FOREIGN KEY (id_libro) REFERENCES libros(id) ON DELETE CASCADE,
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS tokens (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    token VARCHAR(64) NOT NULL UNIQUE,
+    fecha_creacion DATETIME NOT NULL,
+    fecha_expiracion DATETIME NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE,
+    INDEX idx_token (token),
+    INDEX idx_expiracion (fecha_expiracion)
 );

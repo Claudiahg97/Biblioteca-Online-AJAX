@@ -57,7 +57,7 @@ try {
                 'expires' => time() + (30 * 24 * 60 * 60), // 30 días
                 'path' => '/',
                 'secure' => false, // Cambiar a true si usas HTTPS
-                'httponly' => true, // Protección contra XSS
+                'httponly' => false, // Protección contra XSS
                 'samesite' => 'Lax' // Protección contra CSRF
             ]);
         }

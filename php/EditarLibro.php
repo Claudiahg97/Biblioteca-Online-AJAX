@@ -27,7 +27,7 @@ if (!$libro) {
 }
 
 // Verificar que el libro pertenece al usuario actual
-if ($libro['id_usuario'] !== $_SESSION['id_usuario']) {
+if ($libro['id_usuario'] != $_SESSION['id_usuario']) {
     die("No tienes permiso para editar este libro");
 }
 

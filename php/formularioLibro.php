@@ -1,16 +1,14 @@
 <?php 
 session_start(); 
-if (isset($_SESSION['errorLibro'])) {
-    echo "<div style='color: red; padding: 10px; border: 1px solid red; margin: 10px;'>" . 
-        htmlspecialchars($_SESSION['error']) . "</div>";
-    unset($_SESSION['error']);
-}
+
 $conn = require( "conection.php");
 
 // Obtener géneros de la base de datos
 $sql = "SELECT * FROM generos ORDER BY nombre";
 $stmt = $conn->query($sql);
 $generos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 ?>
 
 <!DOCTYPE html>

@@ -32,7 +32,7 @@ foreach ($libros as $libro) {
     $sqlVotos = "SELECT 
                     SUM(CASE WHEN clasificacion = 1 THEN 1 ELSE 0 END) as likes,
                     SUM(CASE WHEN clasificacion = 0 THEN 1 ELSE 0 END) as dislikes
-                 FROM clacificacion 
+                 FROM clasificacion 
                  WHERE id_libro = ?";
     $stmtVotos = $conn->prepare($sqlVotos);
     $stmtVotos->execute([$libro['id']]);

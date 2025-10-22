@@ -35,7 +35,7 @@ if (empty($libro['visitas'])) {
 $sqlVotos = "SELECT 
                 SUM(CASE WHEN clasificacion = 1 THEN 1 ELSE 0 END) as likes,
                 SUM(CASE WHEN clasificacion = 0 THEN 1 ELSE 0 END) as dislikes
-             FROM clacificacion 
+             FROM clasificacion 
              WHERE id_libro = ?";
 $stmtVotos = $conn->prepare($sqlVotos);
 $stmtVotos->execute([$libro['id']]);
@@ -49,7 +49,7 @@ $porcentaje_likes = $total > 0 ? round(($likes / $total) * 100) : 0;
 // Verificar si el usuario ya votó
 $usuario_voto = null;
 if (isset($_SESSION['id_usuario'])) {
-    $sqlUserVote = "SELECT clasificacion FROM clacificacion WHERE id_libro = ? AND id_usuario = ?";
+    $sqlUserVote = "SELECT clasificacion FROM clasificacion WHERE id_libro = ? AND id_usuario = ?";
     $stmtUserVote = $conn->prepare($sqlUserVote);
     $stmtUserVote->execute([$libro['id'], $_SESSION['id_usuario']]);
     $voto = $stmtUserVote->fetch(PDO::FETCH_ASSOC);
@@ -337,7 +337,7 @@ if (isset($_SESSION['id_usuario'])) {
                         <a href="<?php echo htmlspecialchars($libro['link']); ?>" target="_blank" class="enlace-compra">Comprar</a>
                     <?php endif; ?>
                     
-                    <?php if(isset($_SESSION['id_usuario']) && $libro['id_usuario'] === $_SESSION['id_usuario']): ?>
+                    <?php if(isset($_SESSION['id_usuario']) && $libro['id_usuario'] == $_SESSION['id_usuario']): ?>
                         <form action="editarLibro.php" method="GET" class="form-inline">
                             <input type="hidden" name="isbn" value="<?php echo htmlspecialchars($isbn); ?>">
                             <button type="submit">Editar el libro</button>

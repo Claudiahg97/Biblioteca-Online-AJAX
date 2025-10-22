@@ -36,7 +36,7 @@ try {
     $conn = require("conection.php");
     
     // Verificar si el usuario ya votó este libro
-    $sqlCheck = "SELECT clasificacion FROM clacificacion WHERE id_libro = ? AND id_usuario = ?";
+    $sqlCheck = "SELECT clasificacion FROM clasificacion WHERE id_libro = ? AND id_usuario = ?";
     $stmtCheck = $conn->prepare($sqlCheck);
     $stmtCheck->execute([$id_libro, $_SESSION['id_usuario']]);
     $votoExistente = $stmtCheck->fetch(PDO::FETCH_ASSOC);
@@ -48,7 +48,7 @@ try {
             $sqlStats = "SELECT 
                             SUM(CASE WHEN clasificacion = 1 THEN 1 ELSE 0 END) as likes,
                             SUM(CASE WHEN clasificacion = 0 THEN 1 ELSE 0 END) as dislikes
-                         FROM clacificacion WHERE id_libro = ?";
+                         FROM clasificacion WHERE id_libro = ?";
             $stmtStats = $conn->prepare($sqlStats);
             $stmtStats->execute([$id_libro]);
             $stats = $stmtStats->fetch(PDO::FETCH_ASSOC);
@@ -63,13 +63,13 @@ try {
         }
         
         // Actualizar voto existente
-        $sqlUpdate = "UPDATE clacificacion SET clasificacion = ? WHERE id_libro = ? AND id_usuario = ?";
+        $sqlUpdate = "UPDATE clasificacion SET clasificacion = ? WHERE id_libro = ? AND id_usuario = ?";
         $stmtUpdate = $conn->prepare($sqlUpdate);
         $stmtUpdate->execute([$voto, $id_libro, $_SESSION['id_usuario']]);
         $mensaje = 'Has cambiado tu voto';
     } else {
         // Insertar nuevo voto
-        $sqlInsert = "INSERT INTO clacificacion (id_libro, id_usuario, clasificacion) VALUES (?, ?, ?)";
+        $sqlInsert = "INSERT INTO clasificacion (id_libro, id_usuario, clasificacion) VALUES (?, ?, ?)";
         $stmtInsert = $conn->prepare($sqlInsert);
         $stmtInsert->execute([$id_libro, $_SESSION['id_usuario'], $voto]);
         $mensaje = '¡Gracias por tu voto!';
@@ -79,7 +79,7 @@ try {
     $sqlStats = "SELECT 
                     SUM(CASE WHEN clasificacion = 1 THEN 1 ELSE 0 END) as likes,
                     SUM(CASE WHEN clasificacion = 0 THEN 1 ELSE 0 END) as dislikes
-                 FROM clacificacion WHERE id_libro = ?";
+                 FROM clasificacion WHERE id_libro = ?";
     $stmtStats = $conn->prepare($sqlStats);
     $stmtStats->execute([$id_libro]);
     $stats = $stmtStats->fetch(PDO::FETCH_ASSOC);
